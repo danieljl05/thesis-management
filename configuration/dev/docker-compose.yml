@@ -1,0 +1,57 @@
+version: "3.1"
+
+services:
+  th_mysql:
+    image: mysql:5.7
+    container_name: th_mysql
+    hostname: th_mysql
+    environment:
+      - MYSQL_DATABASE=thesis
+      - MYSQL_USER=thesis
+      - MYSQL_PASSWORD=thesis
+      - MYSQL_ROOT_PASSWORD=pass
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  th_lm_configuration:
+    build: ./backend/
+    container_name: th_lm_configuration
+    hostname: th_lm_configuration
+    restart: unless-stopped
+    volumes:
+      - ./../../th-backend/th-lumen-configuration:/var/www/html
+    ports:
+      - "8081:80"
+    depends_on:
+      - th_mysql
+      - th_redis
+
+  th_ng_configuration:
+    build: ./../../th-frontend/th-ng-configuration/
+    container_name: th_ng_configuration
+    hostname: th_ng_configuration
+    restart: unless-stopped
+    ports:
+      - "8001:4200"
+    volumes:
+      - "/app/node_modules"
+      - ./../../th-frontend/th-ng-configuration:/app"
+    depends_on:
+      - th_lm_configuration
+
+  th_redis:
+    image: redis
+    hostname: th_redis
+    container_name: th_redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+
+volumes:
+  mysql-data:
+
+networks:
+  default:
