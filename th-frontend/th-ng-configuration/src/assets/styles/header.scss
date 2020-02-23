@@ -28,6 +28,23 @@ mat-toolbar{
             }
         }
     }
+
+    .logo-container {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;      
+      margin-left: 5px;
+    }
+
+    .logo-container .logo {
+      font-size: 33px;
+    }
+
+    .logo-container .name {
+      position: absolute;
+      top: 21px;
+      font-size: 27px;
+      margin-left: 16px;
+    }
     
     .profile-pic{
         width: 40px;
