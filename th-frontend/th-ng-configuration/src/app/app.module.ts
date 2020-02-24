@@ -25,13 +25,12 @@ import localeEsExtra from '@angular/common/locales/extra/es';
 
 // JWT imports
 import { JwtModule } from "@auth0/angular-jwt";
-import { AuthGuard } from './guards/auth.guard';
-import { LoginGuard } from './guards/login.guard';
+import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
 
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
 export function tokenGetter() {
-  return localStorage.getItem("token");
+  return localStorage.getItem("th_token");
 }
 
 @NgModule({
@@ -64,6 +63,7 @@ export function tokenGetter() {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
+    TokenService,
     AuthGuard,
     LoginGuard
   ],
