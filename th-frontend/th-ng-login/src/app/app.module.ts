@@ -26,6 +26,9 @@ import localeEsExtra from '@angular/common/locales/extra/es';
 // JWT imports
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
+import { AuthComponent } from './layouts/auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
@@ -39,7 +42,10 @@ export function tokenGetter() {
     FullComponent,
     AppHeaderComponent,
     SpinnerComponent,
-    AppSidebarComponent
+    AppSidebarComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

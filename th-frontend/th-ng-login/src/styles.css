@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.login-register {
+    height: 100vh;
+    display: -webkit-box;
+    display: flex;
+    background-size: cover;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.login-register .login-register-box {
+    max-width: 400px;
+    min-width: 280px;
+    margin: 0 auto;
+    vertical-align: middle;
+}
