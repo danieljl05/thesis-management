@@ -2,24 +2,29 @@
     <div class="login-register-box">
         <mat-card class="mat-card">
             <mat-card-content class="mat-card-content">
-                <form>
+                <form role="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="text-center">
                         <mat-icon style="font-size: 60px; margin-right: 37px;">school</mat-icon>
                         <h4 class="m-t-0 m-b-1" style="font-size: 25px;">Thesis MG</h4>
                         <mat-form-field appearance="standard">
                             <mat-label>Nombre</mat-label>
-                            <input matInput>
+                            <input matInput type="text" formControlName="name">
                         </mat-form-field>
                         <mat-form-field appearance="standard">
                             <mat-label>Email</mat-label>
-                            <input matInput type="email">
+                            <input matInput type="email" formControlName="email">
                         </mat-form-field>
                         <mat-form-field appearance="standard">
                             <mat-label>Contraseña</mat-label>
-                            <input matInput type="password">
+                            <input matInput type="password" formControlName="password">
                         </mat-form-field>
-                        <button class="btn-block btn-lg m-t105 m-b-20 mat-raised-button mat-primary"
-                            mat-raised-button>Registrarse</button>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Confirmar contraseña</mat-label>
+                            <input matInput type="password" formControlName="password_confirmation">
+                            <mat-hint style="color: red;" *ngIf="!passwordsMatch">Las contraseñas no coinciden</mat-hint>
+                        </mat-form-field>
+                        <button class="btn-block btn-lg m-t-10 m-b-20 mat-raised-button mat-primary"
+                            mat-raised-button [disabled]="!registerForm.valid || !passwordsMatch" >Registrarse</button>
                         <div class="text-center" fxflex="100" fxflex.gt-sm="100" fxflex.gt-xs="100"
                             style="flex: 1 1 100%; box-sizing: border-box; max-width: 100%;">
                             <span>¿ya te has registrado? <a class="text-info link" routerLink="/login">Inicia

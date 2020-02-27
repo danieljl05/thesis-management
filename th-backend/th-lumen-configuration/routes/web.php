@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    
+    return 'what';
     app('redis')->set('test', 'Hello world from redis c:');
     
     //dd(Cache::get('prueba'));
@@ -25,6 +25,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
     // Matches "/api/register
     $router->post('register', 'AuthController@register');
+    $router->post('signin', 'AuthController@signin');
     
     // Matches "/api/login
     $router->post('login', 'AuthController@login');

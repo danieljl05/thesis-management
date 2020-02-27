@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppRoutes } from './app.routing';
@@ -29,6 +29,7 @@ import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
 import { AuthComponent } from './layouts/auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ComponentePruebaComponent } from './auth/componente-prueba/componente-prueba.component';
 
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
@@ -45,7 +46,8 @@ export function tokenGetter() {
     AppSidebarComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ComponentePruebaComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +61,11 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:8000", "project-manager-udi.000webhostapp.com"],
+        whitelistedDomains: ["localhost:8081"],
         blacklistedRoutes: []
       }
     }),
+    ReactiveFormsModule
   ],
   providers: [
     {
