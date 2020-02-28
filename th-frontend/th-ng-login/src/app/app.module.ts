@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
@@ -26,8 +26,6 @@ import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
 import { AuthComponent } from './layouts/auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { ComponentePruebaComponent } from './auth/componente-prueba/componente-prueba.component';
-
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
 export function tokenGetter() {
@@ -40,8 +38,7 @@ export function tokenGetter() {
     SpinnerComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent,
-    ComponentePruebaComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

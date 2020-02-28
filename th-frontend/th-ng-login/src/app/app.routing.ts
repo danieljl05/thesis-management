@@ -10,7 +10,7 @@ export const AppRoutes: Routes = [
     component: AuthComponent,
     children: [
       {
-        path: 'login',
+        path: '',
         component: LoginComponent
       },
       {

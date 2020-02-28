@@ -1,6 +1,6 @@
 {
   "name": "th-ng-commons",
-  "version": "0.0.6",
+  "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14"
