@@ -8,10 +8,12 @@ export const environment = {
   name: 'dev',
   host: {
     backend: {
-      th_lumen_configuration: 'http://localhost:8081/'
+      th_lumen_configuration: 'http://localhost:8081/api/',
+      th_lumen_login: 'http://localhost:8082/api/'
     },
     frontend: {
-      th_ng_configuration: 'http://localhost:8001/'
+      th_ng_configuration: 'http://localhost:8001/',
+      th_ng_login: 'http://localhost:8002/'
     }
   }
 };

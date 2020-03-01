@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
+import { ErrorComponent } from './layouts/error/error.component';
+import { AuthGuard } from 'th-ng-commons';
 
 export const AppRoutes: Routes = [
   {
@@ -13,14 +15,13 @@ export const AppRoutes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule)
-      },
-      {
         path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard]
       }
     ]
+  }, {
+    path: '**',
+    component: ErrorComponent
   }
 ];

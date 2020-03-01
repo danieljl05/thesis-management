@@ -101,46 +101,46 @@ use profile section
             border-radius: 50%;
             z-index: 0;
         }
-        @-webkit-keyframes blow {
-            0% {
-                box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
-                opacity: 1;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-                opacity: 1;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-            100% {
-                box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
-                opacity: 0;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-        }
-        @keyframes blow {
-            0% {
-                box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
-                opacity: 1;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-                opacity: 1;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-            100% {
-                box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
-                opacity: 0;
-                -webkit-transform: scale3d(1, 1, 0.5);
-                transform: scale3d(1, 1, 0.5);
-            }
-        }
+        // @-webkit-keyframes blow {
+        //     0% {
+        //         box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+        //         opacity: 1;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        //     50% {
+        //         box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+        //         opacity: 1;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        //     100% {
+        //         box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+        //         opacity: 0;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        // }
+        // @keyframes blow {
+        //     0% {
+        //         box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+        //         opacity: 1;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        //     50% {
+        //         box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+        //         opacity: 1;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        //     100% {
+        //         box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+        //         opacity: 0;
+        //         -webkit-transform: scale3d(1, 1, 0.5);
+        //         transform: scale3d(1, 1, 0.5);
+        //     }
+        // }
         img {
             width: 100%;
             border-radius: 100%;

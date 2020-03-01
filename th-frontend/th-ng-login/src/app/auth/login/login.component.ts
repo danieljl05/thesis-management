@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, TokenService } from 'th-ng-commons';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     this.tokenService.handle(data);
-    this.router.navigateByUrl('/dashboard');
+    // DJ - TODO redirect to frontend by role
+    window.location.href = environment.host.frontend.th_ng_configuration;
   }
 }

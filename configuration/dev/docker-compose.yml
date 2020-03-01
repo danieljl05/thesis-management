@@ -17,7 +17,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   th_lm_configuration:
-    build: ./backend/
+    image: danieljl05/laravel-lumen
     container_name: th_lm_configuration
     hostname: th_lm_configuration
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
       - th_redis
 
   th_lm_login:
-    build: ./backend/
+    image: danieljl05/laravel-lumen
     container_name: th_lm_login
     hostname: th_lm_login
     restart: unless-stopped
@@ -48,9 +48,8 @@ services:
     restart: unless-stopped
     ports:
       - "8001:80"
-    volumes:
-      # - "./../../th-frontend/th-ng-configuration/node_modules:/app/node_modules"
-      - ./../../th-frontend/th-ng-configuration:/app"
+    volumes:      
+      - ./../../th-frontend/th-ng-configuration:/app
     depends_on:
       - th_lm_configuration
   
@@ -61,9 +60,8 @@ services:
     restart: unless-stopped
     ports:
       - "8002:80"
-    volumes:
-      - "./../../th-frontend/th-ng-login/node_modules:/app/node_modules"
-      - ./../../th-frontend/th-ng-login:/app"
+    volumes:      
+      - ./../../th-frontend/th-ng-login:/app
     depends_on:
       - th_lm_configuration
       - th_lm_login

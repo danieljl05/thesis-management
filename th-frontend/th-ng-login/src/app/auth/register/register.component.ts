@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User, ERole, TokenService } from 'th-ng-commons';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
 
   handleResponse(data) {
     this.tokenService.handle(data);
-    this.router.navigateByUrl('/dashboard');
+    // DJ - TODO redirect to frontend by role
+    window.location.href = environment.host.frontend.th_ng_configuration;
   }
 
   createUserData(data: any) {
