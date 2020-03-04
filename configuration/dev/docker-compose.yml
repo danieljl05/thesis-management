@@ -66,6 +66,17 @@ services:
       - th_lm_configuration
       - th_lm_login
 
+  th_ngnix_gateway:
+    build: ./frontend/
+    container_name: th_ngnix_gateway
+    hostname: th_ngnix_gateway
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - th_ng_configuration
+      - th_ng_login
+
   th_redis:
     image: redis
     hostname: th_redis

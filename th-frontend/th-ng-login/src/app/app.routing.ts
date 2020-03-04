@@ -11,17 +11,13 @@ export const AppRoutes: Routes = [
     component: AuthComponent,
     children: [
       {
-        path: 'login',
+        path: '',
         component: LoginComponent,
         canActivate: [LoginGuard]
       },
       {
         path: 'register',
         component: RegisterComponent
-      },
-      {
-        path: '**',
-        redirectTo: '/login'
       }
     ]
   }

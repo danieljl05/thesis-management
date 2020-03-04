@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import { ERole } from '../enums/ERole';
+import { environment } from './../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
+
+  static TOKEN_KEY: string = 'th_token';
+  static PAYLOAD_KEY: string = 'th_payload';
+  static USER_INFO_KEY: string = 'th_user_info';
 
   constructor() { }
 
@@ -13,17 +19,17 @@ export class TokenService {
   }
 
   set(token) {
-    localStorage.setItem('th_token', token);
+    localStorage.setItem(TokenService.TOKEN_KEY, token);
     this.payload(token);
   }
 
   saveInfo(info) {
     info = JSON.stringify(info);
-    localStorage.setItem('th_user_info', info);
+    localStorage.setItem(TokenService.USER_INFO_KEY, info);
   }
 
   get() {
-    return localStorage.getItem('th_token');
+    return localStorage.getItem(TokenService.TOKEN_KEY);
   }
 
   isValid() {
@@ -40,21 +46,53 @@ export class TokenService {
   payload(token) {
     const payload = token.split('.')[1];
     const decoded = this.decode(payload);
-    localStorage.setItem('th_payload', JSON.stringify(decoded));
+    localStorage.setItem(TokenService.PAYLOAD_KEY, JSON.stringify(decoded));
     return decoded;
   }
 
   getPayload() {
-    return JSON.parse(localStorage.getItem('th_payload'));
+    return JSON.parse(localStorage.getItem(TokenService.PAYLOAD_KEY));
   }
 
   remove() {
-    localStorage.removeItem('th_token');
-    localStorage.removeItem('th_payload');
-    localStorage.removeItem('th_user_info');
+    localStorage.removeItem(TokenService.TOKEN_KEY);
+    localStorage.removeItem(TokenService.PAYLOAD_KEY);
+    localStorage.removeItem(TokenService.USER_INFO_KEY);
   }
 
   decode(payload) {
     return JSON.parse(atob(payload));
+  }
+
+  getRole() {
+    const userInfo = this.getUserInfo();
+    return userInfo['role'];
+  }
+
+  isAdmin() {
+    return this.getRole() == ERole.ADMIN.key;
+  }
+
+  isEvaluator() {
+    return this.getRole() == ERole.EVALUATOR.key;
+  }
+
+  isStudent() {
+    return this.getRole() == ERole.STUDENT.key;
+  }
+
+  getUserInfo() {
+    return JSON.parse(localStorage.getItem(TokenService.USER_INFO_KEY));
+  }
+
+  getStartUrl() {
+    const role = this.getRole();
+    let url = environment.host.frontend.th_ng_projects_bank;
+    if (role == ERole.ADMIN.key) {
+      url = environment.host.frontend.th_ng_configuration;
+    } else if (role == ERole.EVALUATOR.key) {
+      url = environment.host.frontend.th_ng_evaluation;
+    }
+    return url;
   }
 }

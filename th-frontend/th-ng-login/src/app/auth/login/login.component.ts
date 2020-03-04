@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, TokenService } from 'th-ng-commons';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +41,13 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     this.tokenService.handle(data);
-    // DJ - TODO redirect to frontend by role
-    window.location.href = environment.host.frontend.th_ng_configuration;
+    console.log(this.tokenService.getStartUrl());
+    this.goToStartUrl();
+  }
+
+  goToStartUrl() {
+    setTimeout(() => {
+      window.location.href = this.tokenService.getStartUrl();
+    }, 200);
   }
 }

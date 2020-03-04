@@ -12,7 +12,7 @@ export class AuthService {
 
   
   public get url() : string {
-    return environment.host.backend.th_lumen_configuration;
+    return environment.host.backend.th_lm_configuration;
   }
 
   me() {

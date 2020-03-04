@@ -3,7 +3,6 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User, ERole, TokenService } from 'th-ng-commons';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -45,8 +44,13 @@ export class RegisterComponent implements OnInit {
 
   handleResponse(data) {
     this.tokenService.handle(data);
-    // DJ - TODO redirect to frontend by role
-    window.location.href = environment.host.frontend.th_ng_configuration;
+    this.goToStartUrl();
+  }
+
+  goToStartUrl() {
+    setTimeout(() => {
+      window.location.href = this.tokenService.getStartUrl();
+    }, 200);
   }
 
   createUserData(data: any) {
@@ -54,7 +58,7 @@ export class RegisterComponent implements OnInit {
     user.name = data.name;
     user.email = data.email;
     user.password = data.password;
-    user.role = ERole.STUDENT.value;
+    user.role = Number(ERole.STUDENT.key);
     user.password_confirmation = data.password_confirmation;
     return user;
   }

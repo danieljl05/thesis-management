@@ -8,9 +8,10 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-  { state: 'dashboard', name: 'Dashboard', type: 'link', icon: 'av_timer' },
-  { state: 'button', type: 'link', name: 'Buttons', icon: 'crop_7_5' },
-  { state: 'grid', type: 'link', name: 'Grid List', icon: 'view_comfy' },
+  { state: 'dashboard', name: 'Inicio', type: 'link', icon: 'av_timer' },
+  { state: 'users', type: 'link', name: 'Usuarios', icon: 'person' },
+  { state: 'projects', type: 'link', name: 'Proyectos', icon: 'folder' },
+  { state: 'evaluation', type: 'link', name: 'Rúbrica', icon: 'view_comfy' },
 ];
 
 @Injectable()
