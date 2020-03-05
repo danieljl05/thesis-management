@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     this.tokenService.handle(data);
-    console.log(this.tokenService.getStartUrl());
     this.goToStartUrl();
   }
 
