@@ -29,11 +29,7 @@ import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
 import { ErrorComponent } from './layouts/error/error.component';
 import { AuthService } from './services/auth.service';
 
-
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
-export function tokenGetter() {
-  return localStorage.getItem("th_token");
-}
 
 @NgModule({
   declarations: [
@@ -55,8 +51,8 @@ export function tokenGetter() {
     RouterModule.forRoot(AppRoutes),
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:8000", "project-manager-udi.000webhostapp.com"],
+        tokenGetter: TokenService.getToken,
+        whitelistedDomains: ["localhost:8081"],
         blacklistedRoutes: []
       }
     }),
@@ -73,4 +69,4 @@ export function tokenGetter() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

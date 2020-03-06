@@ -28,9 +28,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
-export function tokenGetter() {
-  return localStorage.getItem("th_token");
-}
 
 @NgModule({
   declarations: [
@@ -51,8 +48,8 @@ export function tokenGetter() {
     RouterModule.forRoot(AppRoutes),
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:8081"],
+        tokenGetter: TokenService.getToken,
+        whitelistedDomains: ["localhost:8082"],
         blacklistedRoutes: []
       }
     }),
@@ -69,4 +66,4 @@ export function tokenGetter() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

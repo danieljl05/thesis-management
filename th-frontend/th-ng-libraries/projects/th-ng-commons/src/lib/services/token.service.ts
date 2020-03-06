@@ -32,6 +32,10 @@ export class TokenService {
     return localStorage.getItem(TokenService.TOKEN_KEY);
   }
 
+  static getToken() {
+    return localStorage.getItem(TokenService.TOKEN_KEY);
+  }
+
   isValid() {
     let valid = false;
     if (this.get()) {
