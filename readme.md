@@ -11,12 +11,20 @@ This a microservices example project using
 ```
 ├─configuration
 │   └─dev
-│       └─backend
-│           └─resources
+│       ├─backend
+│       │    ├─resources
+│       │    └─Dockerfile
+│       ├─frontend
+│       │    └─Dockerfile
+│       └─docker-compose.yml
 ├─th-backend
+│   └─th-lumen-login
 │   └─th-lumen-configuration
 └─th-frontend
+    ├─th-ng-login
+    │   └─Dockerfile
     └─th-ng-configuration
+        └─Dockerfile
 ```
 ## Development
 
