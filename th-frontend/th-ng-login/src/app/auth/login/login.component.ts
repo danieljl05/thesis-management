@@ -1,32 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User, TokenService } from 'th-ng-commons';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  loginForm: FormGroup;
   isTextType: boolean;
+  loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private tokenService: TokenService, private router: Router) {
+  constructor(private authService: AuthService, private tokenService: TokenService) {
     this.isTextType = false;
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
-  }
-
-  toogleTextType() {
-    this.isTextType = !this.isTextType;
-  }
-
-  ngOnInit() {
   }
 
   onSubmit() {
@@ -48,5 +40,9 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       window.location.href = this.tokenService.getStartUrl();
     }, 200);
+  }
+
+  toogleTextType() {
+    this.isTextType = !this.isTextType;
   }
 }

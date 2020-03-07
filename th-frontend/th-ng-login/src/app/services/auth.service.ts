@@ -10,22 +10,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  
-  public get url() : string {
-    return environment.host.backend.th_lm_configuration;
-  }
-
-  me() {
-    return this.http.post(this.url + 'me', {});
-  }
-
-  isAdmin() {
-    const userInfo = this.getUserInfo();
-    return userInfo['idrol'] == 1;
-  }
-
-  getUserInfo() {
-    return JSON.parse(localStorage.getItem('th_user_info'));
+  public get url(): string {
+    return environment.host.backend.th_lm_login;
   }
 
   login(user: User) {
@@ -34,5 +20,9 @@ export class AuthService {
 
   signin(user: User) {
     return this.http.post(this.url + 'signin', user);
+  }
+
+  me() {
+    return this.http.post(this.url + 'me', {});
   }
 }
