@@ -18,6 +18,8 @@ class CreateProjectos extends Migration
             $table->string('descripcion');
             $table->string('abstract');
             $table->unsignedInteger('semestre_id');
+            $table->unsignedInteger('anualidad_id');
+             $table->foreign('anualidad_id')->references('id')->on('anualidad');
             $table->foreign('semestre_id')->references('id')->on('semestre');
             $table->timestamps();
         });
