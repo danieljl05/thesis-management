@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnualidadTable extends Migration
+class CreateProgUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAnualidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('anualidad', function (Blueprint $table) {
+        Schema::create('prog_user', function (Blueprint $table) {
             $table->Increments('id');
-             $table->string('codigo');
-              $table->unsignedInteger('rubrica_id');
-             $table->foreign('rubrica_id')->references('id')->on('rubrica');
+            $table->unsignedInteger('program_id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAnualidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anualidad');
+        Schema::dropIfExists('prog_user');
     }
 }

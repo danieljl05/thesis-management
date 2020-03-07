@@ -21,13 +21,14 @@
                         <mat-form-field appearance="standard">
                             <mat-label>Confirmar contraseña</mat-label>
                             <input matInput type="password" formControlName="password_confirmation">
-                            <mat-hint style="color: red;" *ngIf="!passwordsMatch">Las contraseñas no coinciden</mat-hint>
+                            <mat-hint style="color: red;" *ngIf="!passwordsMatch">Las contraseñas no coinciden
+                            </mat-hint>
                         </mat-form-field>
-                        <button class="btn-block btn-lg m-t-10 m-b-20 mat-raised-button mat-primary"
-                            mat-raised-button [disabled]="!registerForm.valid || !passwordsMatch" >Registrarse</button>
+                        <button class="btn-block btn-lg m-t-10 m-b-20 mat-raised-button mat-primary" mat-raised-button
+                            [disabled]="!registerForm.valid || !passwordsMatch">Registrarse</button>
                         <div class="text-center" fxflex="100" fxflex.gt-sm="100" fxflex.gt-xs="100"
                             style="flex: 1 1 100%; box-sizing: border-box; max-width: 100%;">
-                            <span>¿ya te has registrado? <a class="text-info link" routerLink="/login">Inicia
+                            <span>¿ya te has registrado? <a class="text-info link" routerLink="/">Inicia
                                     sesión</a> </span>
                         </div>
                     </div>

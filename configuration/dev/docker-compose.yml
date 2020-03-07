@@ -48,11 +48,11 @@ services:
     restart: unless-stopped
     ports:
       - "8001:80"
-    volumes:      
+    volumes:
       - ./../../th-frontend/th-ng-configuration:/app
     depends_on:
       - th_lm_configuration
-  
+
   th_ng_login:
     build: ./../../th-frontend/th-ng-login/
     container_name: th_ng_login
@@ -60,7 +60,7 @@ services:
     restart: unless-stopped
     ports:
       - "8002:80"
-    volumes:      
+    volumes:
       - ./../../th-frontend/th-ng-login:/app
     depends_on:
       - th_lm_configuration

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjEv extends Migration
+class CreateProjects extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateProjEv extends Migration
      */
     public function up()
     {
-        Schema::create('proj_ev', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->Increments('id');
-            $table->unsignedInteger('ev_id');
-            $table->unsignedInteger('project_id');
-            $table->foreign('ev_id')->references('id')->on('ev_item');
-            $table->foreign('project_id')->references('id')->on('projectos');
+            $table->string('description');
+            $table->integer('state');
+            $table->unsignedInteger('semester_id');
+            $table->foreign('semester_id')->references('id')->on('semester');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateProjEv extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proj_ev');
+        Schema::dropIfExists('projects');
     }
 }
