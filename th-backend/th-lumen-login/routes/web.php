@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'Hello world';
+    return 'Hello world from login';
 });
 
 // API route group

@@ -1,4 +1,6 @@
-# Thesis managment - microservices
+# Thesis management - microservices
+
+## Stack
 
 This a microservices example project using 
 
@@ -6,6 +8,8 @@ This a microservices example project using
   - Angular
   - Mysql
   - Redis
+  
+![architecture](/docs/img/stack.png)
 
 ## File structure
 ```
@@ -38,6 +42,7 @@ Install backend dependencies
 
 ```
 $ docker exec -it th_lm_configuration composer install
+$ docker exec -it th_lm_login composer install
 ```
 
 Set the database up
@@ -46,13 +51,14 @@ $ docker exec -it th_lm_configuration php artisan migrate --seed
 ```
 Deploy front changes if the containers are already up
 
-Generates angular project build - inside project
+Generates angular project build - inside project (it requires npm)
 ```
 $ npm run build
 ```
 copy dist to nginx
 ```
 $ docker exec -it th_ng_configuration cp -r /app/dist/ /usr/share/nginx/html
+$ docker exec -it th_ng_login cp -r /app/dist/ /usr/share/nginx/html
 ```
 
 ## Containers names
@@ -65,11 +71,13 @@ $ docker exec -it th_ng_configuration cp -r /app/dist/ /usr/share/nginx/html
 ### Data
 * th_mysql - port 3306
 * th_redis - port 6379
+### Gateway
+* th_ngnix_gateway - port 80
 
 <!-- ## About -->
 
 ## Goal
-![architecture](/docs/architecture.jpg)
+![architecture](/docs/img/architecture.png)
 
 ### License
 ----

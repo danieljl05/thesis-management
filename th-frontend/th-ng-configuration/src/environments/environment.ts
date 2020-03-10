@@ -10,8 +10,8 @@ export const environment = {
     backend: {
       th_lm_configuration: 'http://localhost:8081/api/',
       th_lm_login: 'http://localhost:8082/api/',
-      th_lm_evaluation: 'http://localhost:8083/api',
-      th_lm_projects_bank: 'http://localhost:8084/api'
+      th_lm_evaluation: 'http://localhost:8083/api/',
+      th_lm_projects_bank: 'http://localhost:8084/api/'
     },
     frontend: {
       th_ng_configuration: 'http://localhost/configuration/',
