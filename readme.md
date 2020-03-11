@@ -1,5 +1,9 @@
 # Thesis management - microservices
 
+This is the prototype of a web application for thesis management, the student selects a thesis from projects bank, and the evaluator, using the qualification rubric associated with the project, can determine the final grade of the project.
+
+![modules](/docs/img/modules.png)
+
 ## Stack
 
 This a microservices example project using 

@@ -1,5 +1,7 @@
 # Frontend section
 
+![nginx](/docs/img/nginx.jpg)
+
 the frontend section is the set of frontend containers, is accesible using one nginx container as a reverse proxy:
 
 ![proxy](/docs/img/proxy.png)
