@@ -17,8 +17,8 @@ class CreateProjects extends Migration
             $table->Increments('id');
             $table->string('description');
             $table->integer('state');
-            $table->unsignedInteger('semester_id');
-            $table->foreign('semester_id')->references('id')->on('semester');
+            $table->unsignedInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programas');
             $table->timestamps();
         });
     }

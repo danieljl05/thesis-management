@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgUserTable extends Migration
+class CreateProgramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateProgUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('prog_user', function (Blueprint $table) {
+        Schema::create('programas', function (Blueprint $table) {
             $table->Increments('id');
-            $table->unsignedInteger('program_id');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('program_id')->references('id')->on('programas');
+             $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateProgUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prog_user');
+        Schema::dropIfExists('programas');
     }
 }
