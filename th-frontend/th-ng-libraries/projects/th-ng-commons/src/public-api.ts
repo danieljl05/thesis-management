@@ -3,6 +3,7 @@
  */
 // Models
 export * from './lib/models/user';
+export * from './lib/models/annuity';
 // Interfaces
 export * from './lib/interfaces/path';
 // Enums
