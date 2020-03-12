@@ -65,7 +65,7 @@ $ docker exec -it th_ng_configuration cp -r /app/dist/ /usr/share/nginx/html
 $ docker exec -it th_ng_login cp -r /app/dist/ /usr/share/nginx/html
 ```
 
-## Containers names
+## Container names
 ### Backend
 * th_lm_configuration - [localhost:8081](http:/localhost:8081/api)
 * th_lm_login - [localhost:8082](http:/localhost:8082/api)

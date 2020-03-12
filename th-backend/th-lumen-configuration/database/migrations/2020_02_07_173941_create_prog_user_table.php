@@ -18,7 +18,7 @@ class CreateProgUserTable extends Migration
             $table->unsignedInteger('program_id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('program_id')->references('id')->on('programas');
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->timestamps();
         });
     }

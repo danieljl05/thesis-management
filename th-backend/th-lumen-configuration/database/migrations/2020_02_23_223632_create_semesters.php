@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSemester extends Migration
+class CreateSemesters extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSemester extends Migration
      */
     public function up()
     {
-        Schema::create('semester', function (Blueprint $table) {
+        Schema::create('semesters', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
             $table->boolean('active');
@@ -28,6 +28,6 @@ class CreateSemester extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('semester');
+        Schema::dropIfExists('semesters');
     }
 }

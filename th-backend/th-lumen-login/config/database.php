@@ -12,6 +12,7 @@ return [
 			'collation' => 'utf8mb4_unicode_ci',
 			'strict' => false,
 			'engine' => null,
+			// 'unix_socket' => '/var/run/mysqld/mysqld.sock',
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : []

@@ -16,9 +16,9 @@ class CreateProgEveTable extends Migration
         Schema::create('prog_eve', function (Blueprint $table) {
             $table->Increments('id');
             $table->unsignedInteger('prog_id');
-            $table->unsignedInteger('eva_id');
+            $table->unsignedInteger('eva_item_id');
             $table->foreign('prog_id')->references('id')->on('projects');
-            $table->foreign('eva_id')->references('id')->on('evaluation_config');
+            $table->foreign('eva_item_id')->references('id')->on('ev_item');
             $table->timestamps();
         });
     }

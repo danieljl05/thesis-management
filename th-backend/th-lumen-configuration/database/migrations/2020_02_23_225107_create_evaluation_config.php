@@ -15,8 +15,8 @@ class CreateEvaluationConfig extends Migration
     {
         Schema::create('evaluation_config', function (Blueprint $table) {
             $table->Increments('id');
-            $table->unsignedInteger('semestre_id');
-            $table->foreign('semestre_id')->references('id')->on('semester');
+            $table->unsignedInteger('semester_id');
+            $table->foreign('semester_id')->references('id')->on('semesters');
             $table->timestamps();
         });
     }

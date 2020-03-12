@@ -12,31 +12,24 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'what';
-    app('redis')->set('test', 'Hello world from redis c:');
-    
-    //dd(Cache::get('prueba'));
-    return app('redis')->get('test');
-
-    //    return $router->app->version();
+    return 'Hello world from login';
+    // app('redis')->set('test', 'Hello world from redis');
+    // return app('redis')->get('test');
 });
 
 // API route group
 $router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
-    $router->post('register', 'AuthController@register');
-    $router->post('signin', 'AuthController@signin');
-    
-    // Matches "/api/login
-    $router->post('login', 'AuthController@login');
      
     // Matches "/api/profile
     $router->get('profile', 'UserController@profile');
-
+    // Matches "/api/users
+    $router->get('users', 'UserController@allUsers');
     // Matches "/api/users/1 
     //get one user by id
     $router->get('users/{id}', 'UserController@singleUser');
 
-    // Matches "/api/users
-    $router->get('users', 'UserController@allUsers');
+    /**
+     * Annuity Routes
+     */
+    $router->get('annuity', 'AnnuityController@all');
  });
