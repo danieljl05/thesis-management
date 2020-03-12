@@ -20,16 +20,18 @@ $router->get('/', function () use ($router) {
 // API route group
 $router->group(['prefix' => 'api'], function () use ($router) {
      
-    // Matches "/api/profile
+    /**
+     * User routes
+     */
     $router->get('profile', 'UserController@profile');
-    // Matches "/api/users
     $router->get('users', 'UserController@allUsers');
-    // Matches "/api/users/1 
-    //get one user by id
     $router->get('users/{id}', 'UserController@singleUser');
+    $router->post('user', 'UserController@allUsers');
 
     /**
      * Annuity Routes
      */
-    $router->get('annuity', 'AnnuityController@all');
+    $router->get('annuities', 'AnnuityController@getAll');
+    $router->get('annuities/{id}', 'AnnuityController@getById');
+    $router->post('annuity', 'AnnuityController@save');
  });

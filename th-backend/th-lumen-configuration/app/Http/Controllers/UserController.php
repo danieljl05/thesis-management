@@ -56,4 +56,15 @@ class UserController extends Controller
 
     }
 
+    public function save(Request $request) {
+        try {
+            $semester = $this->upsert($request->all());
+            return $this->respond('created', ['semester' => $semester]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
 }

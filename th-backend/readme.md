@@ -6,6 +6,8 @@ the backend section is the set of backend containers, is accesible using the cor
 
 Each container listen an unique port and are defined according to the following tables:
 
+## Database
+![database](/docs/img/database.png)
 
 ## Api containers
 

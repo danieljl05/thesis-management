@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgEveTable extends Migration
+class CreateProjEvTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProgEveTable extends Migration
      */
     public function up()
     {
-        Schema::create('prog_eve', function (Blueprint $table) {
+        Schema::create('proj_ev', function (Blueprint $table) {
             $table->Increments('id');
-            $table->unsignedInteger('prog_id');
+            $table->unsignedInteger('project_id');
             $table->unsignedInteger('eva_item_id');
-            $table->foreign('prog_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->foreign('eva_item_id')->references('id')->on('ev_item');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateProgEveTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prog_eve');
+        Schema::dropIfExists('proj_ev');
     }
 }
