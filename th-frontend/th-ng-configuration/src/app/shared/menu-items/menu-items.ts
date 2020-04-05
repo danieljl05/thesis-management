@@ -12,7 +12,7 @@ const MENUITEMS = [
   { state: 'users', type: 'link', name: 'Usuarios', icon: 'person' },
   { state: 'projects', type: 'link', name: 'Proyectos', icon: 'folder' },
   { state: 'evaluation', type: 'link', name: 'Rúbrica', icon: 'view_comfy' },
-  { state: 'annuity', type: 'link', name: 'Anualidad', icon: 'today' },
+  { state: 'annuities', type: 'link', name: 'Anualidad', icon: 'today' },
 ];
 
 @Injectable()
