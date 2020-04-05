@@ -12,7 +12,7 @@ export const DashboardRoutes: Routes = [
   { path: 'users', component: UserComponent },
   { path: 'projects', component: ProjectComponent },
   { path: 'evaluation', component: EvaluationComponent },
-  { path: 'annuity', component: AnnuityComponent },
-  { path: 'annuity/build', component: AnnuityBuildComponent },
-  { path: 'annuity/build/:id', component: AnnuityBuildComponent },
+  { path: 'annuities', component: AnnuityComponent },
+  { path: 'annuities/build', component: AnnuityBuildComponent },
+  { path: 'annuities/build/:id', component: AnnuityBuildComponent },
 ];

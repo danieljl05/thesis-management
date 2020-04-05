@@ -1,9 +1,8 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, PreloadAllModules } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
@@ -28,6 +27,10 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard, LoginGuard, TokenService } from "th-ng-commons";
 import { ErrorComponent } from './layouts/error/error.component';
 import { AuthService } from './services/auth.service';
+import { SpinnerHttpRequest } from './interceptors/spinner-http-request';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
 
@@ -44,11 +47,10 @@ registerLocaleData(localeEs, 'es-CO', localeEsExtra);
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
     FlexLayoutModule,
     HttpClientModule,
     SharedModule,
-    RouterModule.forRoot(AppRoutes),
+    RouterModule.forRoot(AppRoutes, { preloadingStrategy: PreloadAllModules }),
     JwtModule.forRoot({
       config: {
         tokenGetter: TokenService.getToken,
@@ -56,6 +58,8 @@ registerLocaleData(localeEs, 'es-CO', localeEsExtra);
         blacklistedRoutes: []
       }
     }),
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
@@ -65,7 +69,12 @@ registerLocaleData(localeEs, 'es-CO', localeEsExtra);
     TokenService,
     AuthGuard,
     LoginGuard,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerHttpRequest,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

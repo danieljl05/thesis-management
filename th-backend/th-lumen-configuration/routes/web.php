@@ -33,5 +33,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      */
     $router->get('annuities', 'AnnuityController@getAll');
     $router->get('annuities/{id}', 'AnnuityController@getById');
-    $router->post('annuity', 'AnnuityController@save');
+    $router->delete('annuities/{id}', 'AnnuityController@delete');
+    $router->post('annuities', 'AnnuityController@save');
  });

@@ -22,6 +22,9 @@ class Semester extends Model {
         return $this->hasOne('App\Models\EvaluationConfig');
     }
 
+    protected $with = ['evaluationConfigList'];
+    public static $snakeAttributes = false;
+
     /**
      * The attributes excluded from the model's JSON form.
      *

@@ -12,47 +12,49 @@ import {
   NavigationCancel,
   NavigationError
 } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-spinner',
-  template: `<div class="preloader" *ngIf="isSpinnerVisible">
-        <div class="spinner">
-          <div class="double-bounce1"></div>
-          <div class="double-bounce2"></div>
-        </div>
-    </div>`,
+  template: `
+    <ngx-spinner size="medium" [color]="color" [bdColor]="spinnerBackground" [type]="type"></ngx-spinner>
+  `,
   encapsulation: ViewEncapsulation.None
 })
 export class SpinnerComponent implements OnDestroy {
-  public isSpinnerVisible = true;
 
   @Input()
-  public backgroundColor = 'rgba(0, 115, 170, 0.69)';
+  public color = '#1e88e5';
+  @Input()
+  public type = 'square-jelly-box';
+  @Input()
+  public spinnerBackground = 'rgba(51,51,51,0.8)';
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: Document
+    private spinner: NgxSpinnerService
   ) {
     this.router.events.subscribe(
       event => {
         if (event instanceof NavigationStart) {
-          this.isSpinnerVisible = true;
+          this.spinnerBackground = 'rgba(255, 255, 255, 1)';
+          this.spinner.show();
         } else if (
           event instanceof NavigationEnd ||
           event instanceof NavigationCancel ||
           event instanceof NavigationError
         ) {
-          this.isSpinnerVisible = false;
+          this.spinner.hide();
+          this.spinnerBackground = 'rgba(51, 51, 51, 0.5)';
         }
       },
       () => {
-        this.isSpinnerVisible = false;
+        this.spinner.hide();
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.isSpinnerVisible = false;
+    this.spinner.hide();
   }
 }

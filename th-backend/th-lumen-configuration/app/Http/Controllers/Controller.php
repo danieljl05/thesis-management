@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -23,7 +24,6 @@ class Controller extends BaseController {
     /**
      * Generic data transformation
      */
-
    protected function upsert($data) {
         $instance = null;
         if(array_key_exists('id', $data)) {
@@ -67,7 +67,7 @@ class Controller extends BaseController {
 
     public function getAll() {
         try {
-            return $this->respond('ok', $this->getAll());
+            return $this->respond('ok', $this->all());
         } catch (\Exception $e) {
             return $this->respond('error', $this->getErrorMessage($e));
         }   
@@ -84,9 +84,9 @@ class Controller extends BaseController {
     public function delete($id) {
         try {
             $this->remove($id);
-            return $this->respond('deleted', true);
+            return $this->respond('deleted', ['deleted' => true]);
         } catch (\Exception $th) {
-            return $this->respond('not_found', false);
+            return $this->respond('not_found', ['deleted' => false]);
         }
     }
 

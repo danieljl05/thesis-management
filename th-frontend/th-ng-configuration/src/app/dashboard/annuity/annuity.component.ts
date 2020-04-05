@@ -1,27 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatPaginator } from '@angular/material';
-import { Path } from 'th-ng-commons';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { Path, Annuity } from 'th-ng-commons';
+import { AnnuityService } from '../../services/annuity.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -31,17 +13,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AnnuityComponent implements OnInit {
 
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  ready: boolean = false;
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['position', 'name', 'active', 'actions'];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private annuityService: AnnuityService, private toastr: ToastrService) {
+  }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.getData();
   }
 
   applyFilter(event: Event) {
@@ -49,8 +32,41 @@ export class AnnuityComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getData() {
+    this.annuityService.getAll().subscribe((annuities: Annuity[]) => {
+      let i = 1;
+      const data: any[] = [];
+      for (const a of annuities) {
+        const obj = Object.assign({ position: 0 }, a);
+        obj.position = i;
+        data.push(obj);
+        i++;
+      }
+      this.initData(data);
+    }, error => {
+      this.toastr.error('Ha ocurrido un error');
+      console.error(error);
+    });
+  }
+
+  initData(data: any[]) {
+    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.ready = true;
+  }
+
+  delete(id) {
+    this.annuityService.delete(id).subscribe(res => {
+      if (res['deleted']) {
+        this.toastr.success('Anualidad eliminada correctamente');
+      } else {
+        this.toastr.warning('No es posible eliminar la anualidad');
+      }
+    }, error => this.toastr.error('Ha ocurrido un error'));
+  }
+
   public get lPath(): Path[] {
-    const lPath: Path[] = [{ isActive: true, label: 'Anualidad', url: '' }];
-    return lPath;
+    return [{ isActive: true, label: 'Anualidad', url: '' }];
   }
 }

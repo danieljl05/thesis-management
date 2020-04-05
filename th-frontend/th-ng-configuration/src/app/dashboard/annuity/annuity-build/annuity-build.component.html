@@ -1,1 +1,34 @@
-<app-breadcrumb [lPath]="lPath"></app-breadcrumb>
+<ng-container *ngIf="ready">
+    <app-breadcrumb [lPath]="lPath"></app-breadcrumb>
+    <div class="page-content">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title style="margin-top: 5px;">
+                    Listado anualidad
+                </mat-card-title>
+                <form role="form" [formGroup]="annuityForm" (ngSubmit)="onSubmit()">
+                    <div flex fxLayout="row">
+                        <div fxFlex="80">
+                            <div class="text-center">
+                                <mat-form-field appearance="standard">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput type="text" formControlName="name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="20">
+                            <mat-slide-toggle style="margin-top: 39px; margin-left: 40px;" formControlName="active"
+                                labelPosition="before">¿Activa?
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                    <mat-card-actions align="end">
+                        <a mat-raised-button color="secondary" routerLink="/annuities">Cancelar</a>
+                        <button mat-raised-button color="primary" type="submit"
+                            [disabled]="!annuityForm.valid">Guardar</button>
+                    </mat-card-actions>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</ng-container>

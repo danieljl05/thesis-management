@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Annuity } from 'th-ng-commons';
+import { ConfigurationCommonsService } from './configuration-commons.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnnuityService {
-
-  constructor(private http: HttpClient) { }
+export class AnnuityService extends ConfigurationCommonsService {
 
   public get url(): string {
-    return environment.host.backend.th_lm_configuration;
+    return this.urlCofig + 'annuities/'
   }
 
   save(annuity: Annuity) {
-    return this.http.post(this.url + 'annuity/save', annuity);
+    return this.http.post(this.url, annuity);
   }
 
   getAll() {
-    return this.http.get(this.url + 'annuity');
+    return this.http.get(this.url);
   }
 
   getById(id: number) {
-    return this.http.get(this.url + 'annuity/' + id);
+    return this.http.get(this.url + id);
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.url + id);
   }
 }

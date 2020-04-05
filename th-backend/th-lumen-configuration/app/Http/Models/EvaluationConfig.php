@@ -13,7 +13,7 @@ class EvaluationConfig extends Model {
      * @var array
      */
     protected $fillable = [
-        'id'
+        'id', 'semester_id', 'created_at', 'modified_at'
     ];
 
      /**

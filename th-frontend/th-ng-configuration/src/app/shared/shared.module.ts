@@ -5,6 +5,7 @@ import { AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective } 
 import { BreadcrumbComponent } from '../layouts/full/breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,11 +18,14 @@ import { CommonModule } from '@angular/common';
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [MenuItems]
 })
