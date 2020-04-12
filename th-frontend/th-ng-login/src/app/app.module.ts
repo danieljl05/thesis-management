@@ -29,6 +29,8 @@ import { RegisterComponent } from './auth/register/register.component';
 
 registerLocaleData(localeEs, 'es-CO', localeEsExtra);
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ registerLocaleData(localeEs, 'es-CO', localeEsExtra);
         blacklistedRoutes: []
       }
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

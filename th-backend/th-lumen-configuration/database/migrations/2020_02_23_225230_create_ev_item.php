@@ -15,10 +15,10 @@ class CreateEvItem extends Migration
     {
         Schema::create('ev_item', function (Blueprint $table) {
             $table->Increments('id');
-            $table->unsignedInteger('config_id');
+            $table->unsignedInteger('evaluation_config_id');
             $table->string('name');
             $table->unsignedInteger('percentage');
-            $table->foreign('config_id')->references('id')->on('evaluation_config');
+            $table->foreign('evaluation_config_id')->references('id')->on('evaluation_config')->onDelete('cascade');;
             $table->timestamps();
         });
     }

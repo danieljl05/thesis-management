@@ -23,6 +23,16 @@ class EvaluationConfig extends Model {
     {
         return $this->belongsTo('App\Models\Semester');
     }
+     /**
+     * Get the post that owns the comment.
+     */
+    public function evItems()
+    {
+        return $this->hasMany('App\Models\EvItem');
+    }
+
+    protected $with = ['evItems'];
+    public static $snakeAttributes = false;
 
     /**
      * The attributes excluded from the model's JSON form.

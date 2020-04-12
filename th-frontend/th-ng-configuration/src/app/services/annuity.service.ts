@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Annuity } from 'th-ng-commons';
 import { ConfigurationCommonsService } from './configuration-commons.service';
+import { AnnuityRequest } from '../interfaces/annuity-request';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class AnnuityService extends ConfigurationCommonsService {
     return this.urlCofig + 'annuities/'
   }
 
-  save(annuity: Annuity) {
-    return this.http.post(this.url, annuity);
+  save(annuityRequest: AnnuityRequest) {
+    return this.http.post(this.url, annuityRequest);
   }
 
   getAll() {

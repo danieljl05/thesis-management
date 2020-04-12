@@ -4,6 +4,10 @@
 // Models
 export * from './lib/models/user';
 export * from './lib/models/annuity';
+export * from './lib/models/project';
+export * from './lib/models/program';
+export * from './lib/models/evaluation-config';
+export * from './lib/models/evaluation-item';
 // Interfaces
 export * from './lib/interfaces/path';
 // Enums

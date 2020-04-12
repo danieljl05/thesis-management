@@ -12,8 +12,7 @@ class Controller extends BaseController {
 
     protected $statusCodes = [
 		'ok' => 200,
-		'created' => 201,
-		'deleted' => 204,
+		'created' => 201,		
 		'bad_request' => 400,
 		'not_found' => 404,
 		'conflict' => 409,
@@ -25,14 +24,23 @@ class Controller extends BaseController {
      * Generic data transformation
      */
    protected function upsert($data) {
-        $instance = null;
-        if(array_key_exists('id', $data)) {
-            $instance = $this->find($data['id']);
-            unset($data['id']);
-        }
-        $instance = ($instance == null ? new $this->model($data) :  $this->assignData($instance, $data));
+        $instance = $this->getModelInstance($data);
         $instance->save();
         return $instance;
+    }
+
+    protected function getModelInstance($data, $modelName = null) {
+        $instance = null;
+        $model = $this->getModelName($modelName);
+        if(array_key_exists('id', $data)) {
+            $instance = $model::find($data['id']);
+            unset($data['id']);
+        }        
+        return ($instance == null ? new $model($data) :  $this->assignData($instance, $data));
+    }
+
+    protected function getModelName($modelName = null) {
+        return $modelName != null ? ("App\Models\\" . $modelName) : $this->model;
     }
  
     protected function all() {
@@ -84,9 +92,9 @@ class Controller extends BaseController {
     public function delete($id) {
         try {
             $this->remove($id);
-            return $this->respond('deleted', ['deleted' => true]);
+            return $this->respond('ok', ['deleted' => true]);
         } catch (\Exception $th) {
-            return $this->respond('not_found', ['deleted' => false]);
+            return $this->respond('not_found', ['deleted' => false, 'msg' => $th]);
         }
     }
 

@@ -36,7 +36,7 @@
                         <a mat-icon-button [routerLink]="['build', element.id]">
                             <mat-icon>create</mat-icon>
                         </a>
-                        <button mat-icon-button (click)="delete(element.id)" *ngIf="!element.evaluationConfigList">
+                        <button mat-icon-button (click)="delete(element.id)">
                             <mat-icon>delete_sweep</mat-icon>
                         </button>
                     </td>

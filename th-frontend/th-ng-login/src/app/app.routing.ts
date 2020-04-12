@@ -8,6 +8,7 @@ import { LoginGuard } from 'th-ng-commons';
 export const AppRoutes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: AuthComponent,
     children: [
       {

@@ -3,7 +3,9 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Semester extends Model {
+class EvItem extends Model {
+
+    protected $table = 'ev_item';
 
     /**
      * The attributes that are mass assignable.
@@ -11,19 +13,16 @@ class Semester extends Model {
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'active'
+        'id', 'evluation_config_id', 'name', 'percentage', 'created_at', 'modified_at'
     ];
 
     /**
-     * Get the comments for the blog post.
+     * Get the post that owns the comment.
      */
     public function evaluationConfig()
     {
-        return $this->hasOne('App\Models\EvaluationConfig');
+        return $this->belongsTo('App\models\EvaluationConfig');
     }
-
-    protected $with = ['evaluationConfig'];
-    public static $snakeAttributes = false;
 
     /**
      * The attributes excluded from the model's JSON form.

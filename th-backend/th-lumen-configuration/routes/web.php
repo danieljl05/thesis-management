@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'Hello world from login';
+    return 'Hello world from configuration';
     // app('redis')->set('test', 'Hello world from redis');
     // return app('redis')->get('test');
 });
@@ -35,4 +35,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('annuities/{id}', 'AnnuityController@getById');
     $router->delete('annuities/{id}', 'AnnuityController@delete');
     $router->post('annuities', 'AnnuityController@save');
+
+    /**
+     * Project Routes
+     */
+    $router->get('projects', 'ProjectController@getAll');
+    $router->get('projects/{id}', 'ProjectController@getById');
+    $router->delete('projects/{id}', 'ProjectController@delete');
+    $router->post('projects', 'ProjectController@save');
  });
