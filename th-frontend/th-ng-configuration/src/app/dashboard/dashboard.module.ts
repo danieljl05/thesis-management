@@ -12,6 +12,7 @@ import { ProjectComponent } from './project/project.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { SharedModule } from '../shared/shared.module';
 import { AnnuityBuildComponent } from './annuity/annuity-build/annuity-build.component';
+import { UserBuildComponent } from './user/user-build/user-build.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { AnnuityBuildComponent } from './annuity/annuity-build/annuity-build.com
     UserComponent,
     ProjectComponent,
     EvaluationComponent,
-    AnnuityBuildComponent
+    AnnuityBuildComponent,
+    UserBuildComponent
   ]
 })
 export class DashboardModule { }

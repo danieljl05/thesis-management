@@ -6,7 +6,7 @@ import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { AnnuityBuildComponent } from './annuity/annuity-build/annuity-build.component';
-
+import { UserBuildComponent } from './user/user-build/user-build.component';
 export const DashboardRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
   { path: 'users', component: UserComponent },
@@ -15,4 +15,6 @@ export const DashboardRoutes: Routes = [
   { path: 'annuities', component: AnnuityComponent },
   { path: 'annuities/build', component: AnnuityBuildComponent },
   { path: 'annuities/build/:id', component: AnnuityBuildComponent },
+  { path: 'users/build', component: UserBuildComponent },
+  { path: 'users/build/:id', component: UserBuildComponent },
 ];

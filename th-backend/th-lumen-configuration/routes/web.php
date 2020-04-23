@@ -24,9 +24,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      * User routes
      */
     $router->get('profile', 'UserController@profile');
-    $router->get('users', 'UserController@allUsers');
-    $router->get('users/{id}', 'UserController@singleUser');
-    $router->post('user', 'UserController@allUsers');
+    $router->get('users', 'UserController@getAll');
+    $router->get('users/{id}', 'UserController@getById');
+    $router->post('users', 'UserController@save');
+    $router->delete('users/{id}', 'UserController@delete');
 
     /**
      * Annuity Routes

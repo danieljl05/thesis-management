@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\User;
 
@@ -15,6 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->model = 'App\User';
     }
 
     /**
@@ -42,29 +43,19 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function singleUser($id)
-    {
-        try {
-            $user = User::findOrFail($id);
-
-            return response()->json(['user' => $user], 200);
-
-        } catch (\Exception $e) {
-
-            return response()->json(['message' => 'user not found!'], 404);
-        }
-
-    }
+    
 
     public function save(Request $request) {
-        try {
-            $semester = $this->upsert($request->all());
-            return $this->respond('created', ['semester' => $semester]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        
+            $sData = $request->input('user'); 
+            $sData['password'] = app('hash')->make($sData['password']);
+            $user = $this->getModelInstance($sData);
+            $user->save();
+       
+
+
+            return $this->respond('created', ['user' => $user]);
+        
     }
 
 }
