@@ -27,12 +27,20 @@ This a microservices example project using
 │       │    └─Dockerfile
 │       └─docker-compose.yml
 ├─th-backend
+│   ├─th-lumen-bank
+│   ├─th-lumen-configuration
+│   ├─th-lumen-evaluation
 │   └─th-lumen-login
-│   └─th-lumen-configuration
 └─th-frontend
-    ├─th-ng-login
+    ├─th-ng-bank
     │   └─Dockerfile
-    └─th-ng-configuration
+    ├─th-ng-bank
+    │   └─Dockerfile
+    ├─th-ng-configuration
+    │   └─Dockerfile
+    ├─th-ng-evaluation
+    │   └─Dockerfile
+    └─th-ng-login
         └─Dockerfile
 ```
 
@@ -42,6 +50,7 @@ Start containers using docker compose
 
 ```bash
 cd thesis-managment/configuration/dev
+docker-compose build
 docker-compose up -d
 ```
 
@@ -57,6 +66,8 @@ Set the database up
 ```bash
 docker exec -it th_lm_configuration php artisan migrate --seed
 ```
+
+If you have executed the previous commands you can go to [localhost](http:/localhost:80) and you should login using admin@gmail.com as username and 123 as the password.
 
 ### Deploy front changes if the containers are already up
 
@@ -93,11 +104,15 @@ docker-compose up -d
 
 - th_lm_configuration - [localhost:8081](http:/localhost:8081/api)
 - th_lm_login - [localhost:8082](http:/localhost:8082/api)
+- th_lm_bank - [localhost:8083](http:/localhost:8083/api)
+- th_lm_evaluation - [localhost:8084](http:/localhost:8084/api)
 
 ### Frontend
 
 - th_ng_configuration - [localhost:8001](http:/localhost:8001/)
 - th_ng_login - [localhost:8002](http:/localhost:8002/)
+- th_ng_bank - [localhost:8003](http:/localhost:8003/)
+- th_ng_evaluation - [localhost:8004](http:/localhost:8004/)
 
 ### Data
 

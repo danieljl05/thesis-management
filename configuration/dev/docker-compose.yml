@@ -56,6 +56,30 @@ services:
     depends_on:
       - th_mysql
 
+  th_lm_bank:
+    image: danieljl05/laravel-lumen
+    container_name: th_lm_bank
+    hostname: th_lm_bank
+    restart: unless-stopped
+    volumes:
+      - ./../../th-backend/th-lumen-bank:/var/www/html
+    ports:
+      - "8083:80"
+    depends_on:
+      - th_mysql
+
+  th_lm_evaluation:
+    image: danieljl05/laravel-lumen
+    container_name: th_lm_evaluation
+    hostname: th_lm_evaluation
+    restart: unless-stopped
+    volumes:
+      - ./../../th-backend/th-lumen-evaluation:/var/www/html
+    ports:
+      - "8084:80"
+    depends_on:
+      - th_mysql
+
   th_ng_configuration:
     build: ./../../th-frontend/th-ng-configuration/
     container_name: th_ng_configuration
@@ -79,6 +103,32 @@ services:
       - ./../../th-frontend/th-ng-login:/app
     depends_on:
       - th_lm_configuration
+      - th_lm_login
+
+  th_ng_bank:
+    build: ./../../th-frontend/th-ng-bank/
+    container_name: th_ng_bank
+    hostname: th_ng_bank
+    restart: unless-stopped
+    ports:
+      - "8003:80"
+    volumes:
+      - ./../../th-frontend/th-ng-bank:/app
+    depends_on:
+      - th_lm_bank
+      - th_lm_login
+
+  th_ng_evaluation:
+    build: ./../../th-frontend/th-ng-evaluation/
+    container_name: th_ng_evaluation
+    hostname: th_ng_evaluation
+    restart: unless-stopped
+    ports:
+      - "8004:80"
+    volumes:
+      - ./../../th-frontend/th-ng-evaluation:/app
+    depends_on:
+      - th_lm_evaluation
       - th_lm_login
 
   th_ngnix_gateway:

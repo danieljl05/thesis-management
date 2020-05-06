@@ -8,11 +8,15 @@ import { LoginGuard } from 'th-ng-commons';
 export const AppRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: AuthComponent,
     children: [
       {
         path: '',
+        redirectTo: '/login',
+        pathMatch: 'full'
+      },
+      {
+        path: 'login',
         component: LoginComponent,
         canActivate: [LoginGuard]
       },

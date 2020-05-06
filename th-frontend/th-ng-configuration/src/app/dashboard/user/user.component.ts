@@ -1,8 +1,8 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatPaginator } from '@angular/material';
-import { Path, User} from 'th-ng-commons';
-import { UserService} from '../../services/user.service';
+import { Path, User } from 'th-ng-commons';
+import { UserService } from '../../services/user.service';
 import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-user',
@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
     this.userService.getAll().subscribe((users: User[]) => {
       let i = 1;
       const data: any[] = [];
-      
+
       for (const a of users) {
         const obj = Object.assign({ position: 0 }, a);
         obj.position = i;
@@ -67,7 +67,7 @@ export class UserComponent implements OnInit {
   }
 
   public get lPath(): Path[] {
-    return [{ isActive: true, label: 'Usuario', url: '' }];
+    return [{ isActive: true, label: 'Usuarios', url: '' }];
   }
 
 }
