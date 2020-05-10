@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file.
 - Reverse proxy as frontend gateway
 - th-ng-commons library with all shared guards and models between projects
 
-## Development time
+### Development time
 
 From 13/02 to 05/03
 
@@ -45,7 +45,7 @@ From 13/02 to 05/03
 | Others  | 6  |
 | Total  | 60  |
 
-## 2020/05/10 - v.0.0.2
+## 2020/05/10 - v0.0.2
 
 ### Docker - 100%
 
@@ -97,7 +97,7 @@ From 13/02 to 05/03
 - Remove unused components and menus.
 - Commons library frontend models.
 
-## Development time
+### Development time
 
 From 06/03 to 10/05
 
