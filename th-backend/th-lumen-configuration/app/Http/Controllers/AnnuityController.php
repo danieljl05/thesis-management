@@ -68,10 +68,15 @@ class AnnuityController extends Controller
             EvItem::destroy($evItemsToDelete);
         }
         
-        // It saves the ev items
+        // Ev items save
         $evaluationConfig->evItems()->saveMany($lEvaluationItem);
+        $response = $this->find($semester->id);
+
+        // Redis save
+        $redisKey = 'evaluationConfig' . $response->name;
+        app('redis')->set($redisKey, json_encode($response));
 
         // Returns the semester instance with all related data
-        return $this->respond('created', $this->find($semester->id));
+        return $this->respond('created', $response);
     }
 }

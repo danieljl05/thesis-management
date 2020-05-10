@@ -1,0 +1,54 @@
+<ng-container *ngIf="ready">
+    <app-breadcrumb [lPath]="lPath"></app-breadcrumb>
+    <div class="page-content">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title style="margin-top: 5px;">
+                    {{ title }}
+                </mat-card-title>
+                <form role="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                    <div flex fxLayout="row">
+                        <div fxFlex="72">
+                            <div class="text-center">
+                                <mat-form-field>
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput type="text" formControlName="name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="2"></div>
+                        <div fxFlex="25">
+                            <div class="text-center">
+                                <mat-form-field>
+                                    <mat-label>Programa</mat-label>
+                                    <mat-select formControlName="program_id">
+                                        <mat-option *ngFor="let program of programList" value="{{program.id}}">
+                                            {{program.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex fxLayout="row">
+                        <div fxFlex="99">
+                            <div class="text-center">
+                                <mat-form-field>
+                                    <mat-label>Descripción</mat-label>
+                                    <textarea formControlName="description" matInput name="" id="" cols="30"
+                                        rows="4"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <mat-card-actions align="end">
+                        <a mat-raised-button color="secondary" routerLink="/projects">Cancelar</a>
+                        <button mat-raised-button color="primary" type="submit"
+                            [disabled]="!projectForm.valid">Guardar</button>
+                    </mat-card-actions>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</ng-container>

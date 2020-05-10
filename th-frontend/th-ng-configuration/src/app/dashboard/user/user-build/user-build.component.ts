@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Path, User } from 'th-ng-commons';
+import { Path, User, ERole, Program } from 'th-ng-commons';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UserRequest} from '../../../interfaces/user-request';
+import { UserRequest } from '../../../interfaces/user-request';
 
 @Component({
   selector: 'app-user-build',
@@ -14,11 +14,12 @@ import { UserRequest} from '../../../interfaces/user-request';
 export class UserBuildComponent {
 
   id: number;
-  ready: boolean;
   user: User;
+  ready: boolean;
   userForm: FormGroup;
+  programList: Program[];
   areEvItemsDisabled: boolean;
-
+  passwordIsGonnaChange = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,25 +32,34 @@ export class UserBuildComponent {
     // Each time that the route params changes it makes the request and build the component logic     
     this.route.params.subscribe(params => {
       this.id = params['id'];
+      this.initData();
+    });
+  }
+
+  initData() {
+    this.userService.getPrograms().subscribe((programs: Program[]) => {
+      this.programList = programs && programs.length > 0 ? programs : [];
       this.getUser();
     });
   }
 
-  /**
-   * Get methods are better than normal methods when you call them in the html template for validate or render
-   */
   get title(): string {
     return this.user && this.user.name ? 'Usuario ' + this.user.name : 'Crear Usuario';
   }
 
-  
+  get roleList(): ERole[] {
+    return ERole.list.filter(r => r.key != ERole.ADMIN.key);
+  }
 
+  get passwordsMatch(): boolean {
+    return this.userForm.get('password').value == this.userForm.get('password_confirmation').value;
+  }
 
   /**
    * If the route has any id number it set the info
    */
   getUser() {
-    this.ready = false;
+    this.passwordIsGonnaChange = false;
     if (this.id) {
       this.userService.getById(this.id).subscribe(userResponse => {
         this.handleData(userResponse);
@@ -58,62 +68,68 @@ export class UserBuildComponent {
     } else {
       this.initForm();
       this.user = new User();
-      
     }
   }
 
   /**
-   * Transforms the response data 
+   * Transforms the data response 
    * @param userResponse 
    */
- 
   handleData(userResponse) {
-    
-    // access object propertys - you can use annuityResponse.evaluationConfig
- 
     this.user = userResponse;
   }
+
   initForm() {
+    const userProgramsId = this.user ? this.user.programs.map(p => p.id.toString()) : [];
     this.userForm = this.fb.group({
+      id: this.fb.control(this.user ? this.user.id : ''),
       name: this.fb.control(this.user ? this.user.name : '', [Validators.required]),
       email: this.fb.control(this.user ? this.user.email : '', [Validators.required]),
-      password: this.fb.control('', [Validators.required]),
-      role: this.fb.control(this.user ? this.user.role : '', [Validators.required]),
+      password: this.fb.control('', [Validators.minLength(2)]),
+      password_confirmation: this.fb.control(''),
+      programs: this.fb.control(userProgramsId, [Validators.required]),
+      role: this.fb.control(this.user ? this.user.role.toString() : '', [Validators.required]),
     });
-    
     this.ready = true;
   }
 
   onSubmit() {
-    this.prepareData();
-    const userRequest: UserRequest = {
-      user: this.user
-      
-    };
+    const userRequest = this.prepareData();
     this.saveUser(userRequest);
   }
 
-  prepareData() {
-    this.user.name = this.userForm.value.name;
-    this.user.email = this.userForm.value.email;
-    this.user.password = this.userForm.value.password;
-    this.user.role = this.userForm.value.role;
-   
-    
+  prepareData(): UserRequest {
+    const user = {
+      id: this.userForm.value.id,
+      name: this.userForm.value.name,
+      email: this.userForm.value.email,
+      role: this.userForm.value.role,
+      password: this.userForm.value.password,
+    };
+    const programsId = this.userForm.get('programs').value;
+    if (!this.userForm.value.password) {
+      delete user.password;
+    }
+    return { user, programsId };
   }
 
   saveUser(userRequest: UserRequest) {
-    this.userService.save(userRequest).subscribe((userResponse) => {
-      this.handleData(userResponse);
+    this.userService.save(userRequest).subscribe((userResponse: any) => {
+      this.id = userResponse.user.id;
+      this.getUser();
       this.toastr.success('Usuario guardado correctamente');
-      this.initForm();
     }, error => this.toastr.error('Ha ocurrido un error inesperado'));
   }
 
-
- 
-
-  
+  onChangePassword(e) {
+    this.passwordIsGonnaChange = e.checked;
+    if (this.passwordIsGonnaChange) {
+      this.userForm.get('password').setValidators([Validators.required]);
+    } else {
+      this.userForm.get('password').clearValidators();
+    }
+    this.userForm.get('password').updateValueAndValidity();
+  }
 
   public get lPath(): Path[] {
     const lPath: Path[] = [

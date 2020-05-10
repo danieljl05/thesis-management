@@ -7,6 +7,7 @@ the backend section is the set of backend containers, is accesible using the cor
 Each container listen an unique port and are defined according to the following tables:
 
 ## Database
+
 ![database](/docs/img/database.png)
 
 ## Api containers
@@ -15,6 +16,8 @@ Each container listen an unique port and are defined according to the following 
 | ----- | ---- |
 | th_lm_configuration  | [localhost:8081](http:/localhost:8081/api/)  |
 | th_lm_login  | [localhost:8082](http:/localhost:8082/api/)  |
+| th_lm_bank | [localhost:8083](http:/localhost:8083/api) |
+| th_lm_evaluation | [localhost:8084](http:/localhost:8084/api) |
 
 ## Data containers
 

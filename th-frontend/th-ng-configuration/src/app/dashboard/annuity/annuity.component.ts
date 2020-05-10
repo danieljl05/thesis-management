@@ -57,14 +57,16 @@ export class AnnuityComponent implements OnInit {
   }
 
   delete(id) {
-    this.annuityService.delete(id).subscribe(res => {
-      if (res['deleted']) {
-        this.toastr.success('Anualidad eliminada correctamente');
-        this.getData();
-      } else {
-        this.toastr.warning('No es posible eliminar la anualidad');
-      }
-    }, error => this.toastr.warning('No es posible eliminar la anualidad'));
+    if (confirm('El elemento seleccionado será eliminado ¿deseas continuar?')) {
+      this.annuityService.delete(id).subscribe(res => {
+        if (res['deleted']) {
+          this.toastr.success('Anualidad eliminada correctamente');
+          this.getData();
+        } else {
+          this.toastr.warning('No es posible eliminar la anualidad');
+        }
+      }, error => this.toastr.warning('No es posible eliminar la anualidad'));
+    }
   }
 
   public get lPath(): Path[] {

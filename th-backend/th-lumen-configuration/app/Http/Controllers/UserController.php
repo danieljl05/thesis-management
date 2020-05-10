@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,8 +24,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function profile()
-    {
+    public function profile() {
         return response()->json(['user' => Auth::user()], 200);
     }
 
@@ -33,29 +33,50 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function allUsers()
-    {
+    public function allUsers() {
         return response()->json(['users' =>  User::all()], 200);
     }
 
     /**
-     * Get one user.
-     *
+     * save
      * @return Response
      */
-    
-
-    public function save(Request $request) {
-        
-            $sData = $request->input('user'); 
+    public function save(Request $request) {        
+        $sData = $request->input('user'); 
+        if(array_key_exists('password', $sData)) {
             $sData['password'] = app('hash')->make($sData['password']);
-            $user = $this->getModelInstance($sData);
-            $user->save();
-       
+        }
+        $user = $this->getModelInstance($sData);
+        $user->save();
 
+        if($request->has('programsId')){            
+            $sPrograms = $request->input('programsId');
+            DB::table('program_user')
+                ->where('user_id', '=', $user->id)
+                ->whereNotIn('program_id', $sPrograms)
+                ->delete();
+            foreach ($sPrograms as $key => $programId) {
+                DB::table('program_user')->updateOrInsert(['user_id' => $user->id, 'program_id' => $programId]);
+            } 
+        }
 
-            return $this->respond('created', ['user' => $user]);
-        
+        return $this->respond('created', ['user' => $this->find($user->id)]);        
     }
 
+
+    public function getAll() {
+        try {
+            return $this->respond('ok', $this->model::where('id', '!=', 1)->get());
+        } catch (\Exception $e) {
+            return $this->respond('error', $this->getErrorMessage($e));
+        }   
+    }
+
+    public function getPrograms() {
+        try {
+            return $this->respond('ok', DB::table('programs')->orderBy('name')->get());
+        } catch (\Exception $e) {
+            return $this->respond('error', $this->getErrorMessage($e));
+        }   
+    }
 }

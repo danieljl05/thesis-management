@@ -29,6 +29,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('users', 'UserController@save');
     $router->delete('users/{id}', 'UserController@delete');
 
+    // Programs
+    $router->get('programs', 'UserController@getPrograms');
+
     /**
      * Annuity Routes
      */

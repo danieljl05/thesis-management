@@ -126,10 +126,11 @@ export class AnnuityBuildComponent {
   }
 
   saveAnnuity(annuityRequest: AnnuityRequest) {
-    this.annuityService.save(annuityRequest).subscribe((annuityResponse) => {
+    this.annuityService.save(annuityRequest).subscribe((annuityResponse: any) => {
       this.handleData(annuityResponse);
       this.toastr.success('Anualidad guardada correctamente');
-      this.initForm();
+      this.id = annuityResponse.id;
+      this.getAnnuity();
     }, error => this.toastr.error('Ha ocurrido un error inesperado'));
   }
 

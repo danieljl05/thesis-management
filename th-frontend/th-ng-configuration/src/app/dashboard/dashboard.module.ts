@@ -9,10 +9,10 @@ import { ChartistModule } from 'ng-chartist';
 import { AnnuityComponent } from './annuity/annuity.component';
 import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
-import { EvaluationComponent } from './evaluation/evaluation.component';
 import { SharedModule } from '../shared/shared.module';
 import { AnnuityBuildComponent } from './annuity/annuity-build/annuity-build.component';
 import { UserBuildComponent } from './user/user-build/user-build.component';
+import { ProjectBuildComponent } from './project/project-build/project-build.component';
 
 @NgModule({
   imports: [
@@ -28,9 +28,9 @@ import { UserBuildComponent } from './user/user-build/user-build.component';
     AnnuityComponent,
     UserComponent,
     ProjectComponent,
-    EvaluationComponent,
     AnnuityBuildComponent,
-    UserBuildComponent
+    UserBuildComponent,
+    ProjectBuildComponent
   ]
 })
 export class DashboardModule { }

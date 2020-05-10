@@ -12,9 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'Hello world from configuration';
-    // app('redis')->set('test', 'Hello world from redis');
-    // return app('redis')->get('test');
+    return 'Hello world from evaluation';    
 });
 
 // API route group

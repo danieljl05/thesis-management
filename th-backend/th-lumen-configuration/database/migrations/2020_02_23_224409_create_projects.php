@@ -15,6 +15,7 @@ class CreateProjects extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->Increments('id');
+            $table->string('name');
             $table->string('description');
             $table->integer('state');
             $table->unsignedInteger('program_id');

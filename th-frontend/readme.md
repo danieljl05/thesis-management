@@ -13,3 +13,5 @@ It runs at 80 port and redirects according to the following table:
 | /  | th_ng_login  |
 | /auth  | th_ng_login  |
 | /configuration  | th_ng_configuration  |
+| /bank | th_ng_bank |
+| /evaluation | th_ng_evaluation |

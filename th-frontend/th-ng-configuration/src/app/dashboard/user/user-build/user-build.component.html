@@ -8,46 +8,80 @@
                 </mat-card-title>
                 <form role="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
                     <div flex fxLayout="row">
-                        <div fxFlex="80">
+                        <div fxFlex="70">
                             <div class="text-center">
-                                <mat-form-field appearance="standard">
+                                <mat-form-field>
                                     <mat-label>Nombre</mat-label>
                                     <input matInput type="text" formControlName="name">
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div fxFlex="80">
+                        <div fxFlex="2"></div>
+                        <div fxFlex="20">
                             <div class="text-center">
-                                <mat-form-field appearance="standard">
+                                <mat-form-field>
+                                    <mat-label>Rol</mat-label>
+                                    <mat-select formControlName="role">
+                                        <mat-option *ngFor="let role of roleList" value="{{role.key}}"> {{role.value}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex fxLayout="row">
+                        <div fxFlex="70">
+                            <div class="text-center">
+                                <mat-form-field>
                                     <mat-label>Email</mat-label>
                                     <input matInput type="text" formControlName="email">
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div fxFlex="80">
+                        <div fxFlex="2"></div>
+                        <div fxFlex="20">
                             <div class="text-center">
-                                <mat-form-field appearance="standard">
-                                    <mat-label>Password</mat-label>
-                                    <input matInput type="text" formControlName="password">
+                                <mat-form-field>
+                                    <mat-label>Programas</mat-label>
+                                    <mat-select formControlName="programs" multiple>
+                                        <mat-option *ngFor="let program of programList" value="{{program.id}}">
+                                            {{program.name}}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div fxFlex="80">
+                    </div>
+                    <div flex fxLayout="row">
+                        <mat-checkbox [checked]="passwordIsGonnaChange" (change)="onChangePassword($event)">Establecer
+                            contraseña</mat-checkbox>
+                    </div>
+                    <div flex fxLayout="row" *ngIf="passwordIsGonnaChange">
+                        <div fxFlex="45">
                             <div class="text-center">
-                                <mat-form-field appearance="standard">
-                                    <mat-label>Rol</mat-label>
-                                    <input matInput type="text" formControlName="role">
+                                <mat-form-field>
+                                    <mat-label>Contraseña</mat-label>
+                                    <input matInput type="password" formControlName="password">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="2"></div>
+                        <div fxFlex="45">
+                            <div class="text-center">
+                                <mat-form-field>
+                                    <mat-label>Confirmar contraseña</mat-label>
+                                    <input matInput type="password" formControlName="password_confirmation">
+                                    <mat-hint style="color: red;" *ngIf="!passwordsMatch">Las contraseñas no coinciden
+                                    </mat-hint>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
                     <br>
-                    
-                   
                     <mat-card-actions align="end">
                         <a mat-raised-button color="secondary" routerLink="/users">Cancelar</a>
                         <button mat-raised-button color="primary" type="submit"
-                            [disabled]="!(userForm.valid )">Guardar</button>
+                            [disabled]="!userForm.valid || !passwordsMatch">Guardar</button>
                     </mat-card-actions>
                 </form>
             </mat-card-content>

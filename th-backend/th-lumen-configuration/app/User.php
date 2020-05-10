@@ -31,7 +31,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     
 
-  
+   /**
+     * The programs that belong to the user.
+     */
+    public function programs() {
+        return $this->belongsToMany('App\Models\Program');
+    }
+    
+    protected $with = ['programs'];
+    public static $snakeAttributes = false;
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

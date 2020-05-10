@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model {
+class Program extends Model {
 
     /**
      * The attributes that are mass assignable.
@@ -11,7 +11,7 @@ class Project extends Model {
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'state', 'program_id', 'created_at', 'modified_at'
+        'id', 'name',
     ];
 
     /**
