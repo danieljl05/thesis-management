@@ -1,0 +1,6 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap"></div>
+<app-project *ngIf="!hasProject" (projectChosen)="projectChosen($event)"></app-project>
+<app-project-viewer *ngIf="hasProject" [project]="project"></app-project-viewer>

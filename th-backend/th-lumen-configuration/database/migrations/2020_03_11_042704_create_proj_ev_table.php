@@ -17,6 +17,7 @@ class CreateProjEvTable extends Migration
             $table->Increments('id');
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('eva_item_id');
+            $table->double('score');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->foreign('eva_item_id')->references('id')->on('ev_item');
             $table->timestamps();

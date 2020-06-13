@@ -1,0 +1,29 @@
+<app-breadcrumb [lPath]="lPath"></app-breadcrumb>
+<div class="page-content">
+    <div flex fxLayout="row">
+        <div fxFlex="70">
+            <mat-card *ngIf="ready">
+                <mat-card-content>
+                    <mat-card-actions align="end">
+                        <mat-card-title style="margin-top: 5px;">
+                            Calificación
+                        </mat-card-title>
+                        <div fxFlex></div>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxFlex="30">
+            <mat-card *ngIf="ready">
+                <mat-card-content>
+                    <mat-card-actions align="end">
+                        <mat-card-title style="margin-top: 5px;">
+                            {{ projectName }}
+                        </mat-card-title>
+                        <div fxFlex></div>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
