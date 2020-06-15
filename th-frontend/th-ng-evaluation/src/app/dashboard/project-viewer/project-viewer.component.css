@@ -1,0 +1,15 @@
+.eval-margin {
+    padding-top: 38px;
+}
+
+.main-div {
+    /* height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.align-card {
+    margin: 0 auto;
+    width: 40%;
+}

@@ -1,0 +1,24 @@
+<div class="user-profile" style="background: url(assets/images/background/university.png) no-repeat; height: 152px;">
+    <div class="profile-img"></div>
+    <div class="profile-text">
+        <a [matMenuTriggerFor]="sdprofile" class="">
+            {{ username }} <i class="ti-angle-down font-12 m-l-5"></i>
+        </a>
+    </div>
+    <mat-menu #sdprofile="matMenu" class="mymegamenu">
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon> Cerrar sesión
+        </button>
+    </mat-menu>
+</div>
+<mat-nav-list appAccordion>
+    <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected"
+        group="{{menuitem.state}}">
+        <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
+            <span>{{ menuitem.name }}</span>
+            <span fxFlex></span>
+            <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+        </a>
+    </mat-list-item>
+</mat-nav-list>

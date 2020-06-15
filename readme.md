@@ -59,6 +59,8 @@ Install backend dependencies
 ```bash
 docker exec -it th_lm_configuration composer install
 docker exec -it th_lm_login composer install
+docker exec -it th_lm_bank composer install
+docker exec -it th_lm_evaluation composer install
 ```
 
 Set the database up

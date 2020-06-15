@@ -19,7 +19,7 @@ $router->get('/', function () use ($router) {
 
 // API route group
 $router->group(['prefix' => 'api'], function () use ($router) {
-     
+
     /**
      * User routes
      */
@@ -40,6 +40,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->delete('annuities/{id}', 'AnnuityController@delete');
     $router->post('annuities', 'AnnuityController@save');
 
+    // Evaluation
+    $router->get('evaluation-config', 'AnnuityController@getCurrentConfig');
+
     /**
      * Project Routes
      */
@@ -47,4 +50,4 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('projects/{id}', 'ProjectController@getById');
     $router->delete('projects/{id}', 'ProjectController@delete');
     $router->post('projects', 'ProjectController@save');
- });
+});

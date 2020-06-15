@@ -15,6 +15,6 @@ export abstract class BankCommonsService {
   }
 
   protected get urlBank(): string {
-    return environment.host.backend.th_lm_evaluation;
+    return environment.host.backend.th_lm_bank;
   }
 }
