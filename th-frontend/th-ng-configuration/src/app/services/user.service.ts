@@ -30,4 +30,8 @@ export class UserService extends ConfigurationCommonsService {
   delete(id: number) {
     return this.http.delete(this.url + id);
   }
+
+  getEvaluatorsByProgram(programId: number) {
+    return this.http.get(this.url + 'evaluators/' + programId)
+  }
 }

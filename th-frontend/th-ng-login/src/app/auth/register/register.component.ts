@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     user.name = data.name;
     user.email = data.email;
     user.password = data.password;
-    user.role = Number(ERole.ADMIN);
+    user.role = Number(ERole.STUDENT);
     user.password_confirmation = data.password_confirmation;
     return user;
   }

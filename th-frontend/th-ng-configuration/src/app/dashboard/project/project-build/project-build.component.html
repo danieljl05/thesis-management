@@ -8,7 +8,7 @@
                 </mat-card-title>
                 <form role="form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
                     <div flex fxLayout="row">
-                        <div fxFlex="72">
+                        <div fxFlex="45">
                             <div class="text-center">
                                 <mat-form-field>
                                     <mat-label>Nombre</mat-label>
@@ -21,9 +21,23 @@
                             <div class="text-center">
                                 <mat-form-field>
                                     <mat-label>Programa</mat-label>
-                                    <mat-select formControlName="program_id">
+                                    <mat-select formControlName="program_id"
+                                        (selectionChange)="onChangeProgram($event)">
                                         <mat-option *ngFor="let program of programList" value="{{program.id}}">
                                             {{program.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="2"></div>
+                        <div fxFlex="25">
+                            <div class="text-center">
+                                <mat-form-field>
+                                    <mat-label>Evaluador</mat-label>
+                                    <mat-select formControlName="evaluator">
+                                        <mat-option *ngFor="let evaluator of evaluators" value="{{evaluator.id}}">
+                                            {{evaluator.name}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>

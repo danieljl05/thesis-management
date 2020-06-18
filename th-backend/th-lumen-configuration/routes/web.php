@@ -25,6 +25,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      */
     $router->get('profile', 'UserController@profile');
     $router->get('users', 'UserController@getAll');
+    $router->get('users/evaluators/{id}', 'UserController@evaluatorsByProgram');
     $router->get('users/{id}', 'UserController@getById');
     $router->post('users', 'UserController@save');
     $router->delete('users/{id}', 'UserController@delete');
@@ -48,6 +49,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      */
     $router->get('projects', 'ProjectController@getAll');
     $router->get('projects/{id}', 'ProjectController@getById');
+    $router->get('projects/{id}/evaluator', 'ProjectController@getEvaluator');
     $router->delete('projects/{id}', 'ProjectController@delete');
     $router->post('projects', 'ProjectController@save');
 });

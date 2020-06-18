@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Project, Path, Program } from 'th-ng-commons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from '../../../services/project.service';
@@ -16,7 +16,10 @@ export class ProjectBuildComponent {
 
   id: number;
   ready: boolean;
+  evaluator: any;
   project: Project;
+  evaluators: any[];
+  evaluatorId: number;
   programList: Program[];
   projectForm: FormGroup;
 
@@ -47,14 +50,32 @@ export class ProjectBuildComponent {
 
   getProject() {
     if (this.id) {
-      this.projectService.getById(this.id).subscribe(projectResponse => {
-        this.handleData(projectResponse);
-        this.initForm();
+      this.projectService.getById(this.id).subscribe((projectResponse: any) => {
+        this.userService.getEvaluatorsByProgram(projectResponse.program_id).subscribe((evaluators: any[]) => {
+          this.evaluators = evaluators && evaluators.length > 0 ? evaluators : [];
+          this.projectService.getEvaluator(this.id).subscribe((evaluator: any[]) => {
+            this.handleEvaluator(evaluator);
+            this.handleData(projectResponse);
+            this.initForm();
+          });
+        });
       });
     } else {
       this.initForm();
       this.project = new Project();
     }
+  }
+
+  handleEvaluator(ev: any[]) {
+    this.evaluator = ev && ev.length > 0 ? ev[0] : null;
+  }
+
+  onChangeProgram(e) {
+    this.userService.getEvaluatorsByProgram(e.value).subscribe((evaluators: any[]) => {
+      this.evaluators = evaluators && evaluators.length > 0 ? evaluators : [];
+      this.projectForm.get('evaluator').setValue(null);
+      this.projectForm.get('evaluator').updateValueAndValidity();
+    });
   }
 
   /**
@@ -70,6 +91,7 @@ export class ProjectBuildComponent {
       id: this.fb.control(this.project ? this.project.id : ''),
       name: this.fb.control(this.project ? this.project.name : '', [Validators.required]),
       description: this.fb.control(this.project ? this.project.description : '', [Validators.required]),
+      evaluator: this.fb.control(this.evaluator ? this.evaluator.id.toString() : null, [Validators.required]),
       program_id: this.fb.control(this.project ? this.project.program_id.toString() : '', [Validators.required])
     });
     this.ready = true;
@@ -91,9 +113,8 @@ export class ProjectBuildComponent {
   }
 
   saveProject() {
-    this.projectService.save(this.project).subscribe((project: Project) => {
-      this.handleData(project);
-      this.initForm();
+    this.projectService.save(this.project, this.projectForm.value.evaluator).subscribe((project: Project) => {
+      this.initData();
       this.toastr.success('Proyecto guardado correctamente');
     }, error => this.toastr.error('Ha ocurrido un error inesperado'));
   }

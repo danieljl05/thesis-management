@@ -11,8 +11,8 @@ export class ProjectService extends ConfigurationCommonsService {
     return this.urlCofig + 'projects/'
   }
 
-  save(project: Project) {
-    return this.http.post(this.url, project);
+  save(project: Project, evaluatorId) {
+    return this.http.post(this.url, { project, evaluatorId });
   }
 
   getAll() {
@@ -25,6 +25,10 @@ export class ProjectService extends ConfigurationCommonsService {
 
   delete(id: number) {
     return this.http.delete(this.url + id);
+  }
+
+  getEvaluator(projectId) {
+    return this.http.get(this.url + projectId + '/evaluator');
   }
 
 }
