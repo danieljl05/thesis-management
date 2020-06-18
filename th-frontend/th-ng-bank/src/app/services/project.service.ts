@@ -34,4 +34,8 @@ export class ProjectService extends BankCommonsService {
   chooseProject(id) {
     return this.http.post(this.url + id + '/choose', {})
   }
+
+  getEvaluation(id: number) {
+    return this.http.get(this.urlEvaluation + 'projects/' + id + '/evaluation');
+  }
 }

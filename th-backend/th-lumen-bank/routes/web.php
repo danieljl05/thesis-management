@@ -21,6 +21,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      * Project Routes
      */
     $router->get('projects', 'ProjectController@getAllByProgram');
-    $router->post('projects/{id}/choose', 'ProjectController@choose');
     $router->get('projects/current', 'ProjectController@getCurrentProject');
+    $router->get('projects/{id}', 'ProjectController@getById');
+    $router->post('projects/{id}/choose', 'ProjectController@choose');
 });

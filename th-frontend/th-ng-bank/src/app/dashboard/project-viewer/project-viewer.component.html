@@ -1,27 +1,47 @@
 <app-breadcrumb [lPath]="lPath"></app-breadcrumb>
 <div class="page-content">
-    <div flex fxLayout="row">
-        <div fxFlex="70">
-            <mat-card *ngIf="ready">
+    <div flex fxLayout="row" *ngIf="ready">
+        <div fxFlex="25"></div>
+        <div fxFlex="50">
+            <mat-card>
                 <mat-card-content>
                     <mat-card-actions align="end">
-                        <mat-card-title style="margin-top: 5px;">
-                            Calificación
+                        <mat-card-title>
+                            {{ projectName }} <small> | {{ programName }} </small>
                         </mat-card-title>
                         <div fxFlex></div>
                     </mat-card-actions>
+                    <p style="margin-top: 5px;">
+                        {{project.description}}
+                    </p>
                 </mat-card-content>
             </mat-card>
-        </div>
-        <div fxFlex="30">
-            <mat-card *ngIf="ready">
+            <mat-card>
                 <mat-card-content>
                     <mat-card-actions align="end">
                         <mat-card-title style="margin-top: 5px;">
-                            {{ projectName }}
+                            Calificación: {{ score | number: '1.1-1' }}<br>
+                            <h4 style="margin-top: 8px;">Estado:
+                                <small>
+                                    <b> {{ this.project.state == 2 ? 'Aprobado' : 'Rechazado' }} </b>
+                                </small>
+                            </h4>
                         </mat-card-title>
                         <div fxFlex></div>
                     </mat-card-actions>
+                    <form role="form" [formGroup]="evaluationForm" style="margin-left: 5px;">
+                        <div formArrayName="items">
+                            <ng-container *ngFor="let item of items.controls; let i = index">
+                                <div flex fxLayout="row" [formGroupName]="i">
+                                    <mat-form-field appearance="inlinea">
+                                        <mat-label> {{ item.value['name'] }}
+                                            ({{ item.value['percentage'] }}%) :</mat-label>
+                                        <input matInput type="number" formControlName="score">
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </form>
                 </mat-card-content>
             </mat-card>
         </div>

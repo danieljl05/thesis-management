@@ -39,8 +39,18 @@ export class DashboardComponent implements OnInit {
 	init() {
 		this.projectService.getCurrentProject().subscribe((response: Project) => {
 			this.project = response;
+			if (this.hasProject) {
+				this.goToViewer();
+			}
 		}, error => {
 			this.toastr.error('Se ha producido un error inesperado, por favor, inténtalo de nuevo más tarde');
 		});
+	}
+
+	goToViewer() {
+		const a = document.createElement('a');
+		a.href = '/projects/' + this.project.id + '/evaluation';
+		a.click();
+		a.remove();
 	}
 }

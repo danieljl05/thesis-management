@@ -54,7 +54,7 @@ registerLocaleData(localeEs, 'es-CO', localeEsExtra);
     JwtModule.forRoot({
       config: {
         tokenGetter: TokenService.getToken,
-        whitelistedDomains: ["localhost:8083"],
+        whitelistedDomains: ["localhost:8081", "localhost:8083", "localhost:8084"],
         blacklistedRoutes: []
       }
     }),
