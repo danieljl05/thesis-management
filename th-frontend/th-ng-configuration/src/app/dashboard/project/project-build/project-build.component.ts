@@ -35,7 +35,7 @@ export class ProjectBuildComponent {
   }
 
   get title(): string {
-    return this.project && this.project.description ? 'Proyecto ' + this.project.description : 'Crear proyecto';
+    return this.project && this.project.name ? this.project.name : 'Crear proyecto';
   }
 
   initData() {
@@ -43,7 +43,6 @@ export class ProjectBuildComponent {
       this.programList = programs && programs.length > 0 ? programs : [];
       this.getProject();
     });
-
   }
 
   getProject() {
@@ -106,5 +105,4 @@ export class ProjectBuildComponent {
     ];
     return lPath;
   }
-
 }

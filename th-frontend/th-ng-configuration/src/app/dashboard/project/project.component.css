@@ -6,3 +6,15 @@ table {
     font-size: 14px;
     width: 100%;
 }
+
+::ng-deep .mat-column-actions {
+    width: 10% !important;
+}
+
+::ng-deep .mat-column-name {
+    width: 8% !important;
+}
+
+::ng-deep .mat-column-description {
+    padding: 5px !important;
+}
