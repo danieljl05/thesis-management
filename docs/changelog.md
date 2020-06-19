@@ -109,3 +109,35 @@ From 06/03 to 10/05
 | Frontend  | 16  |
 | Others  | 6  |
 | Total  | 50  |
+
+## 2020/06/18 - v0.0.3
+
+### Docker - 100%
+- no changes
+
+### Database - 100%
+- no changes
+
+### Backend - 100%
+
+#### Changed
+- th_lm_bank finished
+- th_lm_evaluation finished
+
+### Frontend - 100%
+
+#### Changed
+- th_ng_bank finished 
+- th_ng_evaluation finished 
+### Development time
+
+From 05/03 to 06/18
+
+| Component | Hours |
+| ----- | ---- |
+| Docker  | 0  |
+| Database  | 0  |
+| Backend  | 10  |
+| Frontend  | 20  |
+| Others  | 5 |
+| Total  | 35 |

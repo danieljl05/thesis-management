@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
 
 	goToViewer() {
 		const a = document.createElement('a');
-		a.href = '/projects/' + this.project.id + '/evaluation';
+		a.href = 'projects/' + this.project.id + '/evaluation';
 		a.click();
 		a.remove();
 	}
