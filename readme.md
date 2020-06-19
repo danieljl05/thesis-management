@@ -49,6 +49,7 @@ This a microservices example project using
 ### Lumen
 - Facade
 - Iterator
+- Active record
 
 ### Angular
 - Factory
