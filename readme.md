@@ -44,6 +44,17 @@ This a microservices example project using
         └─Dockerfile
 ```
 
+## Design patterns
+
+### Lumen
+- Facade
+- Iterator
+
+### Angular
+- Factory
+- Decorator
+- Singleton
+
 ## Development
 
 Start containers using docker compose
