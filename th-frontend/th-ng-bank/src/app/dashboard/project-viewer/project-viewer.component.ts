@@ -99,7 +99,7 @@ export class ProjectViewerComponent {
     this.projectService.getEvaluation(this.project.id).subscribe((scoreResponse: any[]) => {
       evItems.forEach(ei => {
         const scoreRecord = scoreResponse.find(sr => sr.eva_item_id == ei.id);
-        ei.evId = scoreRecord.id;
+        ei.evId = scoreRecord ? scoreRecord.id : null;
         ei.score = scoreRecord ? scoreRecord.score : null;
       });
       this.lEvaluationItem = evItems;

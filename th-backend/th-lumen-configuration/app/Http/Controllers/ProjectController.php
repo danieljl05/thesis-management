@@ -30,6 +30,7 @@ class ProjectController extends Controller
         try {
             $projectData = $request->input('project');
             $evaluatorId = $request->input('evaluatorId');
+            $projectData['state'] = 1;
             $instance = $this->upsert($projectData);
             $this->setProjectEvaluator($evaluatorId, $instance->id);
             return $this->respond('created', $instance);
